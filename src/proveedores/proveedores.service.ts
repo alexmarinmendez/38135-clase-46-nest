@@ -20,7 +20,10 @@ export class ProveedoresService {
     return proveedorNuevo;
   }
 
-  findAll(): Array<Proveedore> {
+  findAll(limit: number): Array<Proveedore> {
+    if (limit !== 0) {
+      return this.proveedores.slice(0, limit);
+    }
     return this.proveedores;
   }
 

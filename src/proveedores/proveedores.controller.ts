@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { ProveedoresService } from './proveedores.service';
 import { CreateProveedoreDto } from './dto/create-proveedore.dto';
@@ -22,8 +23,8 @@ export class ProveedoresController {
   }
 
   @Get()
-  findAll() {
-    const proveedores = this.proveedoresService.findAll();
+  findAll(@Query('limit') limit: string) {
+    const proveedores = this.proveedoresService.findAll(+limit || 0);
     return { message: 'Proveedores encontrados', proveedores };
   }
 
